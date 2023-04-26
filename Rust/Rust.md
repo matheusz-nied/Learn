@@ -83,10 +83,10 @@ Essa linha significa que podemos usar a função say que a crate ferris-says exp
 
 Agora vamos escrever uma pequena aplicação com a nossa nova dependência. No nosso arquivo `main.rs`, adicione o seguinte código:
 
+```rust
 use ferris_says::say; // from the previous step
 use std::io::{stdout, BufWriter};
 
-```rust
 fn main() {
     let stdout = stdout();
     let message = String::from("Hello fellow Rustaceans!");
