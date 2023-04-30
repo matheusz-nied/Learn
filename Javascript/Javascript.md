@@ -1,7 +1,7 @@
 # Javascript
 
-[Métodos Array](#Métodos-Array)
-[For in & For of](#For-in-&-For-of)
+- [Métodos Array](#Métodos-Array)
+- [For in & For of](#For-in-&-For-of)
 
 ## Métodos Array
 
@@ -129,7 +129,9 @@ soma = numeros.reduce(function (soma, numero) {
 console.log(soma); //15
 ```
 
-Diferente dos outros métodos acima o reduce recebe 2 parâmetros - function(soma, numero) {...} : função de iteração com 2 parâmetros. - 0 : O valor inicial.
+Diferente dos outros métodos acima o reduce recebe 2 parâmetros:
+- function(soma, numero) {...} : função de iteração com 2 parâmetros.
+- 0 : O valor inicial.
 
 ## For in & For of
 
