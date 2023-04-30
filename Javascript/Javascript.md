@@ -9,9 +9,7 @@ Neste artigo irei discorrer sobre alguns métodos do Array no javascript. Há a 
 
 ### Foreach
 
-    Muito útil quando precisamos passar por todos os elementos de um array. Por exemplo,
-
-e quisermos exibir todos os elementos de um array no `console.log()`. Por exemplo, se fossemos fazer isso utilizando o for comum ficaria assim?
+Muito útil quando precisamos passar por todos os elementos de um array. Por exemplo, e quisermos exibir todos os elementos de um array no `console.log()`. Por exemplo, se fossemos fazer isso utilizando o for comum ficaria assim:
 
 ```js
 const pintores = ["Leonardo da Vince", "Michelangelo", "Van Gogh"];
