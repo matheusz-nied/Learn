@@ -1,7 +1,7 @@
 # Javascript
 
 - [Métodos Array](#Métodos-Array)
-- [For in & For of](#For-in-e-For-of)
+- [For in e For of](#For-in-e-For-of)
 
 ## Métodos Array
 
