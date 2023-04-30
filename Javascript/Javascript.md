@@ -1,7 +1,7 @@
 # Javascript
 
 - [Métodos Array](#Métodos-Array)
-- [For in & For of](#For-in-&-For-of)
+- [For in & For of](#For-in-e-For-of)
 
 ## Métodos Array
 
@@ -133,7 +133,7 @@ Diferente dos outros métodos acima o reduce recebe 2 parâmetros:
 - function(soma, numero) {...} : função de iteração com 2 parâmetros.
 - 0 : O valor inicial.
 
-## For in & For of
+## For in e For of
 
 ### For in
 
