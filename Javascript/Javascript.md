@@ -1,7 +1,16 @@
 # Javascript
 
-- [Métodos Array](#Métodos-Array)
-- [For in e For of](#For-in-e-For-of)
+-   [Métodos Array](#Métodos-Array)
+    -   [Foreach](#Foreach)
+    -   [Map](#Map)
+    -   [Filter](#Filter)
+    -   [Find](#Find)
+    -   [Every](#Every)
+    -   [Some](#Some)
+    -   [Reduce](#Reduce)
+-   [For in e For of](#For-in-e-For-of)
+-   [Map e WeakMap](#Map-e-WeakMap)
+-   [Sets e WeakSets](#Sets-e-WeakSets)
 
 ## Métodos Array
 
@@ -128,8 +137,9 @@ console.log(soma); //15
 ```
 
 Diferente dos outros métodos acima o reduce recebe 2 parâmetros:
-- function(soma, numero) {...} : função de iteração com 2 parâmetros.
-- 0 : O valor inicial.
+
+-   function(soma, numero) {...} : função de iteração com 2 parâmetros.
+-   0 : O valor inicial.
 
 ## For in e For of
 
@@ -160,4 +170,110 @@ for (numero of numeros) {
 }
 ```
 
-## MAP E WEAKMAP
+## Map e WeakMap
+
+Mapas são estruturas de dados em que é possível associar uma chave a um valor — como em um dicionário, onde há um significado correspondente para cada palavra. Cada uma das chaves é única e possui apenas um valor associado, mesmo que este se repita em várias chaves.
+
+### Map
+
+Em um Map do Javascript, qualquer valor (tanto objetos, funções ou valores primitivos) podem ser usados como chave ou valor.
+E ara recuprerar os valores de um map atráves das chaves usamos o método get:
+
+```js
+const map = new Map();
+function funcao() {}
+var objeto = {};
+
+map.set("string", "sou uma string");
+map.set(objeto, "sou um objeto");
+map.set(funcao, "sou uma função");
+
+console.log(map.get("string"));
+console.log(map.get(objeto));
+console.log(map.get(funcao));
+```
+
+O map também traz outras funcionalidades interessantes:
+
+Para saber quantos itens um mapa tem, usamos a propriedade size :
+
+`console.log("tamanho: " + map.size); // tamanho: 3`
+Para saber se já existe uma chave específica dentro do mapa, utilizamos o método has . Ele retorna um valor booleano: true caso exista; false caso não exista.
+
+`console.log(map.has("string")); // true`
+`console.log(map.has("abc")); // false`
+
+Também podemos remover um registro específico do mapa com o método delete , passando como parâmetro a chave do registro que queremos eliminar.
+
+```js
+map.delete("string");
+console.log(map.has("string")); // false
+```
+
+Há também a possibilidade de eliminar todos os registros do
+mapa usando o método clear.
+
+```js
+map.clear();
+console.log("tamanho: " + map.size); // tamanho: 0
+```
+
+Podemos utilizar o laço para iterá-los através dos métodos: keys , values e entries. Eles retornam todas as chaves, todos os valores e todas (par chave/valor), respectivamente.
+
+```js
+var map = new Map();
+map.set("um", 1);
+map.set("dois", 2);
+map.set("três", 3);
+for (var chave of mapa.keys()) {
+    console.log(chave); // um dois três
+}
+for (var valor of mapa.values()) {
+    console.log(valor); // 1 2 3
+}
+for (var entrada of mapa.entries()) {
+    console.log(entrada);
+}
+// saida:
+// ['um',1]
+// ['dois',2]
+// ['três',3]
+```
+
+### WeakMap
+
+Um WeakMap é uma coleção de pares de chave/valor na qual as chaves só podem ser objetos. As referências do objetos nas chaves são fracamente mantidas. Isso significa que eles não estão previnidos de serem coletados pelo Garbage Collector caso não existir nenhuma outra referência para o objeto em memória.
+
+## Sets e WeakSets
+
+### Set
+
+O Set é uma estrutura de dados que nos permite ter listas com
+valores que nunca se duplicam e que mantém a ordem de inserção
+dos seus itens.
+
+```js
+var set = new Set();
+set.add(2);
+set.add(1);
+set.add(2);
+for (const valor of set) {
+    console.log(valor); // 2, 1
+}
+
+set.delete(1); // Deleta o 1
+
+set.clear(); // Limpa tudo
+
+set.has(2); // Returna true se o 2 estiver no Set, false caso não esteja
+
+set.size; // Retorna o tamanho
+```
+### WeakSet
+
+É um Set que não previce seus elementos de serem coletados pelo Garbage Collector.
+Sempre que você tiver preocupação com vazamento de memória, o WeakSet estará a seu dispor.
+
+
+
+
