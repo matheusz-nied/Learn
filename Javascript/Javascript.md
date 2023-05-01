@@ -11,6 +11,7 @@
 -   [For in e For of](#For-in-e-For-of)
 -   [Map e WeakMap](#Map-e-WeakMap)
 -   [Sets e WeakSets](#Sets-e-WeakSets)
+-   [Tornando parâmetro obrigatório](#Tornando-parâmetro-obrigatório)
 
 ## Métodos Array
 
@@ -269,11 +270,25 @@ set.has(2); // Returna true se o 2 estiver no Set, false caso não esteja
 
 set.size; // Retorna o tamanho
 ```
+
 ### WeakSet
 
 É um Set que não previce seus elementos de serem coletados pelo Garbage Collector.
 Sempre que você tiver preocupação com vazamento de memória, o WeakSet estará a seu dispor.
 
+## Tornando parâmetro obrigatório
 
+Se quisermos que um parâmetro seja obrigatório utilizamos uma técnica que ao executar o método sem passar nenhum parâmetro temos:
 
+```js
+function parametroObrigatorio(parametro) {
+    throw new Error(`O parâmetro "${parametro}" é obrigatório!`);
+}
+function inserirNaTela(objeto = parametroObrigatorio("objeto")) {
+    // lógica de implementação do método
+}
+inserirNaTela();
+// Error: O parâmetro "objeto" é obrigatório!
+```
 
+Esta é uma maneira interessante de impedir
