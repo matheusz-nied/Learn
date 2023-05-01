@@ -29,7 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 require('./auth')(passport);
 app.use(session({  
-  secret: '123',//configure um segredo seu aqui,
+  store: new (require('connect-pg-simple')(session))(),//usa process.env.DATABASE_URL internamente
+
+  secret: process.env.SESSION_SECRET,//configure um segredo seu aqui,
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 30 * 60 * 1000 }//30min
@@ -38,7 +40,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/login', loginRouter);
-app.use('/users', authenticationMiddleware, usersRouter);
+app.use('/users',  usersRouter);
 app.use('/', authenticationMiddleware,  indexRouter);
 
 // catch 404 and forward to error handler

@@ -3,10 +3,22 @@
 /**
  * Module dependencies.
  */
+(async () => {
 
+
+require("dotenv-safe").config()
 var app = require('../app');
 var debug = require('debug')('auth-passport:server');
 var http = require('http');
+
+// Banco de dados
+
+try {
+  await require("../db").connect()
+} catch (err) {
+  return console.log(err)
+}
+
 
 /**
  * Get port from environment and store in Express.
@@ -88,3 +100,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+})()
