@@ -12,6 +12,10 @@
 -   [Map e WeakMap](#Map-e-WeakMap)
 -   [Sets e WeakSets](#Sets-e-WeakSets)
 -   [Tornando parâmetro obrigatório](#Tornando-parâmetro-obrigatório)
+-   [Generators](#Generators)
+    -   [Iteráveis com Generators](#Iteráveis-com-Generators)
+    -   [Symbols.Iterator](#Symbols.Iterator)
+-   [Proxys](#Proxys)
 
 ## Métodos Array
 
@@ -292,3 +296,72 @@ inserirNaTela();
 ```
 
 Esta é uma maneira interessante de impedir
+
+## Generators
+
+Funções geradoras são funções no JavaScript em que podemos interromper e retornar sua execução várias vezes. Em termos práticos, isso significa que a execução do método é realizada até um ponto e é interrompida até que invocada novamente. Quando invocada, continua sua execução a partir do ponto em que parou.
+A palavra reservada yield , é utilizada para definir um ponto de parada da função.
+Quando chamamos uma função geradora, seu corpo não é executado imediatamente. Em vez disso, um objeto iterável é retornado. Esse objeto possui uma função muito útil chamada next . Ao utilizar este método next dele, o corpo da função geradora é executado até a primeira expressão yield , que define o valor que será devolvido no retorno da função.
+Um exemplo abaixo:
+
+```js
+function* percorrerLinha477() {
+    console.log("Passei pela rua1");
+    yield "Parada 1";
+    console.log("Passei pela rua2");
+    yield "Parada 2";
+    console.log("Passei pela rua3");
+    yield "Parada 3";
+    console.log("Passei pela rua4");
+    yield "Fim da linha";
+}
+
+const linha = percorrerLinha477();
+let next = linha.next();
+console.log(next); // { value: 'Parada 1', done: false }
+
+next = linha.next();
+console.log(next); // { value: 'Parada 2', done: false }
+
+next = linha.next();
+console.log(next); //{ value: 'Parada 3', done: false }
+
+next = linha.next();
+console.log(next); // { value: 'Fim da linha', done: false }
+
+next = linha.next();
+console.log(next); //{ value: undefined, done: true }
+```
+### Iteráveis com Generators
+
+For of é uma estrutura criada para interpretar funções geradores que são iteráveis.
+
+### Symbols.Iterator
+
+O symbols representa um tipo único e imutável de dado. Ele é armazenado de uma forma especial em que a propriedade não
+vai aparecer em enumerações das propriedades de um objeto.
+
+Quando usamos a estrutura for...of para iterar um objeto, o método definido por este símbolo é chamado e o iterável retornado é usado para obter os valores a serem iterados. Isso significa que todos os tipos de objetos iteráveis por padrão no JavaScript possuem este método definido.
+
+Por exemplo em um Array, podemos recuperar sua propriedade de iteração e usar para iterá-lo:
+
+```js
+const primos = [2,3,5];
+const iterador = primos[Symbol.iterator]();
+console.log(iterador.next()); // { value: 2, done: false }
+console.log(iterador.next()); // { value: 3, done: false }
+console.log(iterador.next()); // { value: 5, done: false }
+console.log(iterador.next()); // { value: undefined, done: true }
+```
+
+## Proxys
+
+Os objetos Proxies nos permitem interceptar e customizar operações fundamentais em objetos, tais como:
+
+- Acessar uma propriedade;
+- Setar uma propriedade;
+- Enumerar propriedades;
+- Deletar propriedades;
+- Verificar a existência de uma da propriedade;
+
+Um proxy é um objeto que representa outro objeto.
