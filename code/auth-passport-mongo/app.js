@@ -9,6 +9,7 @@ const session = require('express-session');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
+const openRouter = require('./routes/open');
 
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
@@ -27,19 +28,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const MongoStore = require("connect-mongo")
 require('./auth')(passport);
 app.use(session({  
-  store: new (require('connect-pg-simple')(session))(),//usa process.env.DATABASE_URL internamente
+  store: MongoStore.create({
+    autoRemove: 'native',
+    mongoUrl: process.env.MONGO_CONNECTION,
+    dbName: process.env.MONGO_DB,
+    ttl: 15 // 30 min sessão
+  }),
 
   secret: process.env.SESSION_SECRET,//configure um segredo seu aqui,
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 30 * 60 * 1000 }//30min
+  cookie: { maxAge: 15* 1000 }//30min
 }))
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/login', loginRouter);
+app.use('/open', openRouter);
 app.use('/users',  usersRouter);
 app.use('/', authenticationMiddleware,  indexRouter);
 
