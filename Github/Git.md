@@ -1,4 +1,17 @@
 # Git
+- [Versionando seu código com Git](#Versionando-seu-código-com-Git)
+- [Compartilhando seu código através do GitHub](#Compartilhando-seu-código-através-do-GitHub)
+- [A área de stage](#A-área-de-stage)
+- [Ignorando arquivos](#Ignorando-arquivos)
+- [Gravando arquivos no repositório](#Gravando-arquivos-no-repositório)
+- [Verificando o histórico do seu repositório](#Verificando-o-histórico-do-seu-repositório)
+- [Desfazendo mudanças](#Desfazendo-mudanças)
+-(Alterando e removendo os repositórios remotos)[#Alterando-e-removendo-os-repositórios-remotos]
+-(## Enviando os commits do projeto para o GitHub)[#Enviando-os-commits-do-projeto-para-o-GitHub]
+-(Organizando o trabalho com
+branches)[#Organizando-o-trabalho-com-branches]
+-(Criando uma branch)[#Criando-uma-branch]
+-(Mesclando alterações)[#Mesclando-alterações]
 
 ## Versionando seu código com Git
 ### Instalando
@@ -158,3 +171,80 @@ Se quisermos voltar atrás, desfazendo as alterações no repositório, podemos 
 `$ git revert --no-edit 6111116` 
 Nesse comando, o código 6111116 representa o último commit efetuado. Se omitirmos a opção --no-edit , será aberto um editor de texto para editarmos a mensagem do 
 novo commit.
+
+## Repositório remoto
+### Adicionando repositorio remoto
+
+`$ git remote add {servidor}`
+
+### Alterando e removendo os repositórios remotos
+
+É possível alterar o name de um repositório remoto utilizando o comando git remote rename:
+
+`$ git remote rename servidor outronome`
+
+A mudança é feita com o comando, o git remote set-url, passando como parâmetro o name do repositório remoto e a nova url:
+
+`$ git remote set-url servidor`
+
+## Enviando os commits do projeto para o GitHub
+
+O envio dos commits é feito utilizando o comando git push:
+`$ git push origin master`
+
+## Organizando o trabalho com branches
+
+### Trabalhando em paralelo com branches
+
+A maioria dos sistemas de controle de versão permite trabalho em paralelo através de branches. Uma branch é uma linha independente de desenvolvimento em que p
+
+### A branch master
+
+O Git possui por padrão uma branch principal chamada master.
+
+Se quisermos listar as branches existentes no nosso repositório com os commits associados, poderíamos utilizar a opção -v do comando git branch:
+`$ git branch -v`
+
+Juntando as opções, podemos executar git log --oneline
+--decorate --parents para exibir o histórico resumido do nosso
+repositório com o commit para o qual a master está apontado e os commits pai de cada commit.Teríamos uma saída parecida com:
+`git log --oneline --decorate --parents`
+
+### Criando uma branch
+
+Para criarmos uma branch chamada design para trabalharmos na melhoria do design basta executarmos:
+
+`$ git branch design`
+
+Para trocarmos para a branch recentemente criada, devemos executar:
+`$ git checkout design`
+
+Criando e já trocando para uma nova branch uma só vez. Podemos fazer isso passando a opção -b para o comando git
+checkout:
+
+`$ git checkout -b loja`
+
+Para deletar uma branch, devemos utilizar a opção -d do comando git branch:
+`$ git branch -d loja`
+
+Não é possível deletar com a opção -d uma branch que possui commits ainda não aplicados em outras branches.
+Para removermos a branch loja se tivermos feito algum commit, devemos utilizar a opção -D:
+`$ git branch -D loja`
+
+### Mesclando alterações
+
+Verificando branches ainda não mescladas.Considerando que estamos na branch master, podemos verificar as
+branches ainda não mescladas com a opção --no-merged do comando git
+branch:
+`$ git branch --no-merged`
+
+Teríamos a seguinte saída da branch não mesclada:
+`$ design`
+
+Isso indica que há mudanças ainda não mescladas na branch  design. O comando git branch também tem a opção --merged. Se executássemos git branch --merged, teríamos:
+`* master`
+
+Mesclando alterações com merge:
+Para juntarmos todas as alterações que fizemos na branch design com as da branch master, mesclando as duas, podemos utilizar o comando:
+
+`$ git merge design -m "Mesclando com a branch design"`
