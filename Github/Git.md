@@ -6,12 +6,11 @@
 - [Gravando arquivos no repositório](#Gravando-arquivos-no-repositório)
 - [Verificando o histórico do seu repositório](#Verificando-o-histórico-do-seu-repositório)
 - [Desfazendo mudanças](#Desfazendo-mudanças)
--(Alterando e removendo os repositórios remotos)[#Alterando-e-removendo-os-repositórios-remotos]
--(## Enviando os commits do projeto para o GitHub)[#Enviando-os-commits-do-projeto-para-o-GitHub]
--(Organizando o trabalho com
-branches)[#Organizando-o-trabalho-com-branches]
--(Criando uma branch)[#Criando-uma-branch]
--(Mesclando alterações)[#Mesclando-alterações]
+- (Alterando e removendo os repositórios remotos)[#Alterando-e-removendo-os-repositórios-remotos]
+- (## Enviando os commits do projeto para o GitHub)[#Enviando-os-commits-do-projeto-para-o-GitHub]
+- (Organizando o trabalho com branches)[#Organizando-o-trabalho-com-branches]
+- (Criando uma branch)[#Criando-uma-branch]
+- (Mesclando alterações)[#Mesclando-alterações]
 
 ## Versionando seu código com Git
 ### Instalando
