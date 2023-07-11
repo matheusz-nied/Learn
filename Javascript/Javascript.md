@@ -16,6 +16,7 @@
     -   [Iteráveis com Generators](#Iteráveis-com-Generators)
     -   [Symbols.Iterator](#Symbols.Iterator)
 -   [Proxys](#Proxys)
+- [Propriedades somente leitura](#Propriedades-somente-leitura)
 
 ## Métodos Array
 
@@ -365,3 +366,22 @@ Os objetos Proxies nos permitem interceptar e customizar operações fundamentai
 - Verificar a existência de uma da propriedade;
 
 Um proxy é um objeto que representa outro objeto.
+
+
+
+## Propriedades somente leitura
+
+Esse método é o Object.defineProperties e sua variação singular Object.defineProperty:
+
+
+```js
+const objeto = {}
+const atributos = {
+  writable: false, /* não podemos sobrescrever o valor desta propriedade */ 
+  value: 10, /* Valor inicial */ 
+  enumerable: false, /* a propriedade não vai ser enumerada */
+  configurable: false /* a propriedade não pode ser alterada ou removida */
+}
+Object.defineProperty(objeto, 'propriedade', atributos)
+```
+É possível também passar uma chave get e set, que são funções ou valores que serão chamados sempre que a propriedade for lida ou escrita.
